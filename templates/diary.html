@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caren's Love Diary • Page {{ page }}</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Background Video -->
+  <video autoplay muted loop id="bgVideo" class="bg-video"></video>
+  <!-- Background Music -->
+  <audio autoplay loop id="music"></audio>
+
+  <!-- Content -->
+  <div class="content">
+    <h1 id="title"></h1>
+    <p id="text"></p>
+  </div>
+
+  <!-- Navigation Buttons -->
+  <div class="nav">
+    {% if page > 1 %}
+      <button onclick="location.href='/page/{{page-1}}'">← Previous</button>
+    {% endif %}
+    {% if page < 6 %}
+      <button onclick="location.href='/page/{{page+1}}'" class="next">Next →</button>
+    {% else %}
+      <button style="background:#ff1493;color:white;font-size:1.6rem;padding:20px 60px">
+        You're My Wife Forever 💍
+      </button>
+    {% endif %}
+  </div>
+
+  <!-- Caren Photo Popup -->
+  <div id="photoPopup" class="popup">
+    <img src="/static/caren/caren.jpg" alt="My Beautiful Caren">
+  </div>
+
+  <script src="/static/script.js"></script>
+  <script>
+    const current = {{ page }};
+    loadPage(current);
+  </script>
+</body>
+</html>
