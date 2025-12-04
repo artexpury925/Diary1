@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>To My Future Wife Caren 💍</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&family=Parisienne&display=swap');
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: 'Georgia', serif; overflow:hidden; height:100vh; background:#000; color:white; }
+    
+    /* Home Page */
+    .home {
+      background: linear-gradient(135deg, #ff006e, #ff8c00, #ffd60a);
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      height:100vh; text-align:center; padding:20px;
+    }
+    .home h1 { font-family: 'Great Vibes', cursive; font-size:4.8rem; margin-bottom:20px; }
+    .love-text { font-size:1.6rem; line-height:2.3rem; background:rgba(0,0,0,0.4); padding:30px; border-radius:25px; max-width:90%; }
+    .diary-btn {
+      margin-top:50px; padding:20px 60px; font-size:2rem; background:#fff; color:#e91e63;
+      border:none; border-radius:50px; cursor:pointer; box-shadow:0 20px 50px rgba(0,0,0,0.4);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(255,20,147,0.7);} 70%{box-shadow:0 0 0 25px rgba(255,20,147,0);} 100%{box-shadow:0 0 0 0 rgba(255,20,147,0);} }
+
+    /* Password Screen */
+    .password-screen {
+      background: linear-gradient(135deg, #000, #33003d);
+      display:flex; flex-direction:column; align-items:center; justify-content:center; height:100vh;
+    }
+    .pass-box {
+      background:rgba(255,255,255,0.1); padding:60px; border-radius:30px;
+      backdrop-filter:blur(15px); border:3px solid #ff1493; text-align:center;
+    }
+    .pass-box input {
+      padding:18px; width:320px; margin:20px 0; border-radius:15px; border:2px solid #ff1493;
+      background:#000; color:white; font-size:1.3rem; text-align:center;
+    }
+    .pass-box button {
+      padding:18px 50px; background:#ff1493; color:white; border:none; border-radius:50px;
+      font-size:1.4rem; cursor:pointer;
+    }
+
+    /* Diary */
+    .diary { position:relative; width:100%; height:100vh; }
+    .bg-video { position:fixed; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:-2; filter:brightness(0.5) blur(1px); }
+    .content {
+      position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+      text-align:center; z-index:10; padding:20px; width:90%;
+    }
+    .content h1 {
+      font-family: 'Dancing Script', cursive; font-size:5.5rem; margin-bottom:30px;
+      text-shadow: 0 0 40px #ff1493;
+    }
+    .content p {
+      font-size:1.8rem; line-height:2.5rem; background:rgba(0,0,0,0.55);
+      padding:35px; border-radius:30px; text-shadow:2px 2px 15px #000;
+    }
+
+    .nav {
+      position:fixed; bottom:40px; left:50%; transform:translateX(-50%); z-index:100;
+    }
+    .nav button {
+      padding:18px 50px; margin:0 25px; background:rgba(255,255,255,0.97);
+      color:#e91e63; border:none; border-radius:50px; font-size:1.4rem; cursor:pointer;
+      box-shadow:0 15px 40px rgba(0,0,0,0.4);
+    }
+
+    /* Caren Photo Popup */
+    .popup {
+      position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0);
+      width:340px; height:340px; z-index:999; pointer-events:none;
+    }
+    .popup img {
+      width:100%; height:100%; object-fit:cover; border:15px solid #fff;
+      border-radius:50%; box-shadow:0 0 100px #ff1493, 0 0 150px #ff69b4;
+    }
+    .popup.show { animation: lovePop 3s forwards; }
+    @keyframes lovePop {
+      0%   { transform:translate(-50%,-50%) scale(0) rotate(-20deg); opacity:0; }
+      50%  { transform:translate(-50%,-50%) scale(1.3) rotate(10deg); opacity:1; }
+      100% { transform:translate(-50%,-50%) scale(1) rotate(0deg); opacity:1; }
+    }
+    @keyframes hearts { 0%{transform:translateY(-100vh) rotate(0deg);} 100%{transform:translateY(100vh) rotate(360deg);} }
+  </style>
+</head>
+<body>
+
+  <!-- HOME -->
+  <div id="home" class="home">
+    <h1>My Eternal Love<br>Caren Chelangat Ronoh 💕</h1>
+    <p class="love-text">
+      From that very first day at Sereret Secondary School,<br>
+      my heart chose you forever.<br><br>
+      Every moment, every laugh, every May 13th with you<br>
+      is the reason I live.<br><br>
+      You are my girlfriend today,<br>
+      my wife tomorrow,<br>
+      my soulmate for eternity.
+    </p>
+    <button class="diary-btn" onclick="showPass()">Open My Love Diary 💌</button>
+  </div>
+
+  <!-- PASSWORD -->
+  <div id="password" class="password-screen" style="display:none">
+    <div class="pass-box">
+      <h2 style="font-family:'Great Vibes',cursive;font-size:3rem;color:#ff69b4;">Only my soulmate can enter ❤️</h2>
+      <p>Hint: Who are we forever? (small letters only)</p>
+      <input type="password" id="pass" placeholder="enter password here" />
+      <button onclick="check()">Enter Diary</button>
+      <p id="msg" style="color:#ff6b6b;margin-top:15px;"></p>
+    </div>
+  </div>
+
+  <!-- DIARY -->
+  <div id="diary" class="diary" style="display:none">
+    <video autoplay muted loop class="bg-video" id="video"></video>
+    <audio autoplay loop id="song"></audio>
+
+    <div class="content" id="content"></div>
+
+    <div class="nav">
+      <button onclick="prev()" id="prev">← Previous</button>
+      <button onclick="next()" id="next">Next →</button>
+    </div>
+
+    <!-- Caren Photo Popup -->
+    <div class="popup" id="popup">
+      <img src="caren/caren.jpg" alt="My Beautiful Caren ❤️" />
+    </div>
+  </div>
+
+  <script>
+    const pages = [
+      { title:"My Darling Caren 💕", text:"The second I saw you at Seretet Secondary School,<br>my heart said: She's the one.<br>That moment changed my life forever.", video:"https://videos.pexels.com/video-files/3047092/3047092-hd_1920_1080_30fps.mp4", song:"https://www.chosic.com/wp-content/uploads/2022/07/Scott-Buckley-Moonlight.mp3" },
+      { title:"One Year of Pure Love ✨", text:"From stolen glances to holding your hand,<br>every memory with you is my greatest treasure.<br>I fall more in love every single day.", video:"https://videos.pexels.com/video-files/854735/854735-hd_1920_1080_30fps.mp4", song:"https://www.chosic.com/wp-content/uploads/2022/07/You-Are-My-Sunshine.mp3" },
+      { title:"May 13th — Our Sacred Day ❤️", text:"Our anniversary is coming...<br>The day my dreams came true.<br>I can't wait to call you my wife one day soon.", video:"https://videos.pexels.com/video-files/3195392/3195392-hd_1920_1080_30fps.mp4", song:"https://www.chosic.com/wp-content/uploads/2022/07/Ed-Sheeran-Perfect.mp3" },
+      { title:"I Confess My Love 💍", text:"Caren Chelangat Ronoh,<br>I love you more than words can say.<br>You are my peace, my joy, my home.<br>Forever isn't long enough.", video:"https://videos.pexels.com/video-files/855564/855564-hd_1920_1080_30fps.mp4", song:"https://www.chosic.com/wp-content/uploads/2022/07/John-Legend-All-of-Me.mp3" },
+      { title:"You Are My Everything 🌹", text:"Your smile lights my world.<br>Your voice is my favorite song.<br>You are perfect in every way.<br>I am the luckiest man alive.", video:"https://videos.pexels.com/video-files/7579185/7579185-hd_1920_1080_30fps.mp4", song:"https://www.chosic.com/wp-content/uploads/2022/07/Bruno-Mars-Just-The-Way-You-Are.mp3" },
+      { title:"Forever Yours 💞", text:"Caren, one day I'll put a ring on your finger.<br>Until then, know this:<br>You own my heart completely.<br>I love you endlessly, my future wife.", video:"https://videos.pexels.com/video-files/7565619/7565619-hd_1920_1080_30fps.mp4", song:"https://www.chosic.com/wp-content/uploads/2022/07/Elvis-Presley-Cant-Help-Falling-In-Love.mp3" }
+    ];
+
+    let i = 0;
+
+    function showPass() {
+      document.getElementById("home").style.display = "none";
+      document.getElementById("password").style.display = "flex";
+    }
+
+    function check() {
+      if (document.getElementById("pass").value === "soulmate") {
+        document.getElementById("password").style.display = "none";
+        document.getElementById("diary").style.display = "block";
+        load(i);
+      } else {
+        document.getElementById("msg").innerText = "Wrong password my love... try again ❤️";
+      }
+    }
+
+    function load(n) {
+      i = n;
+      const p = pages[n];
+      document.getElementById("video").src = p.video;
+      document.getElementById("song").src = p.song;
+      document.getElementById("content").innerHTML = `<h1>${p.title}</h1><p>${p.text}</p>`;
+      document.getElementById("prev").style.display = n === 0 ? "none" : "block";
+      document.getElementById("next").innerText = n === 5 ? "My Heart Is Yours 💕" : "Next →";
+
+      // Photo popup + hearts
+      setTimeout(() => {
+        document.getElementById("popup").classList.add("show");
+        hearts();
+      }, 1000);
+    }
+
+    function next() { if(i < 5) load(i+1); }
+    function prev() { if(i > 0) load(i-1); }
+
+    function hearts() {
+      for(let x=0; x<30; x++) {
+        const h = document.createElement("div");
+        h.innerHTML = ["❤️","💕","🌹","💐"][Math.floor(Math.random()*4)];
+        h.style.position = "fixed";
+        h.style.left = Math.random()*100 + "vw";
+        h.style.top = "-60px";
+        h.style.fontSize = "28px";
+        h.style.animation = "hearts " + (4 + Math.random()*4) + "s linear forwards";
+        h.style.zIndex = "99";
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 8000);
+      }
+    }
+
+    // Enter key support
+    document.getElementById("pass").addEventListener("keypress", e => { if(e.key === "Enter") check(); });
+  </script>
+</body>
+</html>
